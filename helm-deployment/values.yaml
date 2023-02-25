@@ -5,7 +5,7 @@
 replicaCount: 5
 
 image:
-  repository: demoazacr7710.azurecr.io/demoazacr7710:latest
+  repository: demoazacr7710.azurecr.io/springboot-ui-k8s:latest
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
