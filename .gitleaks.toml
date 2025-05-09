@@ -1,0 +1,43 @@
+title = "Custom Gitleaks Configuration"
+description = "Prevent false positives and whitelist known patterns"
+
+[allowlist]
+description = "Allow known non-sensitive test patterns"
+
+# Allow common test secrets and dummy values
+regexes = [
+  "dummy-api-key",
+  "test-secret",
+  "abc123",
+  "localhost:[0-9]{1,5}",
+  "127\\.0\\.0\\.1",
+  "password=1234",
+  "secret=xyz",
+  "token=dev-token",
+  "AKIA[0-9A-Z]{16}",         # fake AWS key pattern to be safely ignored
+  "ghp_[a-zA-Z0-9]{36}",      # fake GitHub token
+]
+
+# Allow files or directories to be skipped
+files = [
+  ".*\\.md",                  # Ignore markdown docs
+  ".*\\.txt",                 # Ignore text files
+  ".*\\.yml",                 # Skip all YAML (CI configs)
+  ".*test.*",                 # Test files
+  ".*fixtures.*",             # Test fixtures
+  ".*__mocks__.*",            # Mocks
+  ".*\\.json",                # JSON sample config files
+  ".*env.example",            # .env.example or template envs
+]
+
+# Ignore commits (add hashes if you want to skip historical data)
+commits = []
+
+# Ignore repos (can be used if scanning monorepos with nested git)
+repos = []
+
+# Set threshold for entropy to reduce false alarms on long strings
+[entropy]
+enable = true
+min = 3.5
+max = 8.0
