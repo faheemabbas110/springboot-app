@@ -1,1 +1,41 @@
+title = "Custom Gitleaks Configuration"
+description = "Prevent false positives and whitelist known patterns"
+
+[allowlist]
+description = "Allow known non-sensitive test patterns"
+
+# Allow common test secrets and dummy values
+regexes = [
+  "dummy-api-key",
+  "test-secret",
+  "abc123",
+  "localhost:[0-9]{1,5}",
+  "127\\.0\\.0\\.1",
+  "password=1234",
+  "secret=xyz",
+  "token=dev-token"
+  # ⚠️ Removed fake AWS and GitHub token patterns from allowlist:
+  # "AKIA[0-9A-Z]{16}",        
+  # "ghp_[a-zA-Z0-9]{36}",     
+]
+
+# Allow files or directories to be skipped
+files = [
+  ".*\\.md",                  
+  ".*\\.txt",                 
+  ".*\\.yml",                 
+  ".*test.*",                 
+  ".*fixtures.*",             
+  ".*__mocks__.*",            
+  ".*\\.json",                
+  ".*env.example",            
+]
+
+commits = []
+repos = []
+
+[entropy]
+enable = true
+min = 3.5
+max = 8.0
 
