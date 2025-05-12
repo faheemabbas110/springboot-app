@@ -24,11 +24,6 @@ node {
         sh "'${mvnHome}/bin/mvn' -f MyAwesomeApp/pom.xml clean install"
     }
 
-    // Archive stage - Archive the build artifacts (e.g., JAR files)
-    stage('Archive') {
-        archiveArtifacts '**/*.jar'
-    }
-
     // Docker Build stage - Build the Docker image
     stage('Docker Build') {
         withDockerServer([uri: "tcp://localhost:4243"]) {
