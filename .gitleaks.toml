@@ -38,4 +38,3 @@ repos = []
 enable = true
 min = 3.5
 max = 8.0
-
